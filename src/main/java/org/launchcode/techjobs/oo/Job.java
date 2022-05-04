@@ -31,7 +31,20 @@ public class Job {
     }
 
     public String toString() {
-        return "\nID: " + nextId + "\nName: " + name + "\nEmployer: " + employer + "\nLocation: " + location + "\nPosition Type: " + positionType + "\nCore Competency: " + coreCompetency;
+        String emptyMessage = "Data not available";
+        String result = "";
+        if (name == null) { result = "OOPS! This job does not seem to exist.";
+        } else {
+        if (employer.getValue() == null || employer.getValue().equals("")) { employer.setValue(emptyMessage); }
+        if (location.getValue() == null || location.getValue().equals("")) { location.setValue(emptyMessage); }
+        if (positionType.getValue() == null || positionType.getValue().equals("")) { positionType.setValue(emptyMessage); }
+        if (coreCompetency.getValue() == null || coreCompetency.getValue().equals("")) { coreCompetency.setValue(emptyMessage); }
+//        if (Objects.equals(name, "Data not available") && Objects.equals(employer.getValue(), "Data not available") && Objects.equals(location.getValue(), "Data not available") && Objects.equals(positionType.getValue(), "Data not available") && Objects.equals(coreCompetency.getValue(), "Data not available")) {
+//            return "OOPS! This job does not seem to exist.";
+//        } //else {
+            result =  "\nID: " + id + "\nName: " + name + "\nEmployer: " + employer.getValue() + "\nLocation: " + location.getValue() + "\nPosition Type: " + positionType.getValue() + "\nCore Competency: " + coreCompetency.getValue();
+        }
+        return result;
     }
 
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields

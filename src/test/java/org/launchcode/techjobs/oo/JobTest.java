@@ -12,6 +12,7 @@ public class JobTest {
     Job test_job_3;
     Job test_job_4;
     Job test_job_5;
+    Job test_job_6;
 
     @Before
     public void createJobObject() {
@@ -20,6 +21,7 @@ public class JobTest {
             test_job_3 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
             test_job_4 = new Job("Your Dream Job", new Employer("Bumble"), new Location("Remote"), new PositionType("Front end developer"), new CoreCompetency("Positive attitude"));
             test_job_5 = new Job("Your Dream Job", new Employer("Bumble"), new Location("Remote"), new PositionType("Front end developer"), new CoreCompetency("Positive attitude"));
+            test_job_6 = new Job("Incomplete Job", new Employer(""), new Location("New York City"), new PositionType(""), new CoreCompetency("Java"));
         }
 
     @Test
@@ -38,10 +40,10 @@ public class JobTest {
         CoreCompetency testCoreCompetency = test_job_3.getCoreCompetency();
 
         assertEquals("Product tester", testName);
-        //assertEquals(new Employer("ACME"), testEmployer);
-        //assertEquals(new Location("Desert"), testLocation);
-        //assertEquals(new PositionType("Quality control"), testPositionType);
-        //assertEquals(new CoreCompetency("Persistence"), testCoreCompetency);
+        assertEquals("ACME", testEmployer.getValue());
+        assertEquals("Desert", testLocation.getValue());
+        assertEquals("Quality control", testPositionType.getValue());
+        assertEquals("Persistence", testCoreCompetency.getValue());
 
         assertTrue(test_job_3 instanceof Job);
         assertTrue(testName instanceof String);
@@ -53,13 +55,14 @@ public class JobTest {
 
     @Test
     public void testJobsForEquality() {
-        assertNotSame("Verify that two Job objects with different IDs are not equal", test_job_4, test_job_5);
+        assertFalse(test_job_4 == test_job_5);
     }
 
     @Test
     public void testJobsPrintCorrectly() {
-        assertEquals("\nID: 6\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence", test_job_3.toString());
+        assertEquals("\nID: " + test_job_3.getId() + "\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence", test_job_3.toString());
+        assertEquals("OOPS! This job does not seem to exist.", test_job_1.toString());
+        assertEquals("\nID: " + test_job_6.getId() + "\nName: Incomplete Job\nEmployer: Data not available\nLocation: New York City\nPosition Type: Data not available\nCore Competency: Java", test_job_6.toString());
+
     }
-
-
 }
