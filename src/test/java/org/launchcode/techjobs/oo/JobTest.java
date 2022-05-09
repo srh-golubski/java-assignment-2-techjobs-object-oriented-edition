@@ -16,13 +16,13 @@ public class JobTest {
 
     @Before
     public void createJobObject() {
-            test_job_1 = new Job();
-            test_job_2 = new Job();
-            test_job_3 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-            test_job_4 = new Job("Your Dream Job", new Employer("Bumble"), new Location("Remote"), new PositionType("Front end developer"), new CoreCompetency("Positive attitude"));
-            test_job_5 = new Job("Your Dream Job", new Employer("Bumble"), new Location("Remote"), new PositionType("Front end developer"), new CoreCompetency("Positive attitude"));
-            test_job_6 = new Job("Incomplete Job", new Employer(""), new Location("New York City"), new PositionType(""), new CoreCompetency("Java"));
-        }
+        test_job_1 = new Job();
+        test_job_2 = new Job();
+        test_job_3 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        test_job_4 = new Job("Your Dream Job", new Employer("Bumble"), new Location("Remote"), new PositionType("Front end developer"), new CoreCompetency("Positive attitude"));
+        test_job_5 = new Job("Your Dream Job", new Employer("Bumble"), new Location("Remote"), new PositionType("Front end developer"), new CoreCompetency("Positive attitude"));
+        test_job_6 = new Job("Incomplete Job", new Employer(""), new Location("New York City"), new PositionType(""), new CoreCompetency("Java"));
+    }
 
     @Test
     public void testSettingJobId() {
@@ -60,9 +60,24 @@ public class JobTest {
 
     @Test
     public void testJobsPrintCorrectly() {
-        assertEquals("\nID: " + test_job_3.getId() + "\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence", test_job_3.toString());
+        assertEquals("\nID: " + test_job_3.getId() + "\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n", test_job_3.toString());
         assertEquals("OOPS! This job does not seem to exist.", test_job_1.toString());
-        assertEquals("\nID: " + test_job_6.getId() + "\nName: Incomplete Job\nEmployer: Data not available\nLocation: New York City\nPosition Type: Data not available\nCore Competency: Java", test_job_6.toString());
+        assertEquals("\nID: " + test_job_6.getId() + "\nName: Incomplete Job\nEmployer: Data not available\nLocation: New York City\nPosition Type: Data not available\nCore Competency: Java\n", test_job_6.toString());
 
+    }
+
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+        assertEquals("\nID: " + test_job_3.getId() + "\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n", test_job_3.toString());
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField() {
+        assertEquals("\nID: " + test_job_6.getId() + "\nName: Incomplete Job\nEmployer: Data not available\nLocation: New York City\nPosition Type: Data not available\nCore Competency: Java\n", test_job_6.toString());
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        assertEquals("\nID: " + test_job_4.getId() + "\nName: Your Dream Job\nEmployer: Bumble\nLocation: Remote\nPosition Type: Front end developer\nCore Competency: Positive attitude\n", test_job_4.toString());
     }
 }
