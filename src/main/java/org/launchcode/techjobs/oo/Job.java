@@ -39,9 +39,6 @@ public class Job {
         if (location.getValue() == null || location.getValue().equals("")) { location.setValue(emptyMessage); }
         if (positionType.getValue() == null || positionType.getValue().equals("")) { positionType.setValue(emptyMessage); }
         if (coreCompetency.getValue() == null || coreCompetency.getValue().equals("")) { coreCompetency.setValue(emptyMessage); }
-//        if (Objects.equals(name, "Data not available") && Objects.equals(employer.getValue(), "Data not available") && Objects.equals(location.getValue(), "Data not available") && Objects.equals(positionType.getValue(), "Data not available") && Objects.equals(coreCompetency.getValue(), "Data not available")) {
-//            return "OOPS! This job does not seem to exist.";
-//        } //else {
             result =  "\nID: " + id + "\nName: " + name + "\nEmployer: " + employer.getValue() + "\nLocation: " + location.getValue() + "\nPosition Type: " + positionType.getValue() + "\nCore Competency: " + coreCompetency.getValue() + "\n";
         }
         return result;
