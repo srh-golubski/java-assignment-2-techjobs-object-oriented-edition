@@ -33,13 +33,19 @@ public class Job {
     public String toString() {
         String emptyMessage = "Data not available";
         String result = "";
-        if (name == null) { result = "\nOOPS! This job does not seem to exist.\n";
+        if (name == null || name == "") { result = "\nOOPS! This job does not seem to exist.\n";
         } else {
         if (employer.getValue() == null || employer.getValue().equals("")) { employer.setValue(emptyMessage); }
         if (location.getValue() == null || location.getValue().equals("")) { location.setValue(emptyMessage); }
         if (positionType.getValue() == null || positionType.getValue().equals("")) { positionType.setValue(emptyMessage); }
         if (coreCompetency.getValue() == null || coreCompetency.getValue().equals("")) { coreCompetency.setValue(emptyMessage); }
-            result =  "\nID: " + id + "\nName: " + name + "\nEmployer: " + employer.getValue() + "\nLocation: " + location.getValue() + "\nPosition Type: " + positionType.getValue() + "\nCore Competency: " + coreCompetency.getValue() + "\n";
+            result =  "\nID: " + id +
+                    "\nName: " + name +
+                    "\nEmployer: " + employer.getValue() +
+                    "\nLocation: " + location.getValue() +
+                    "\nPosition Type: " + positionType.getValue() +
+                    "\nCore Competency: " + coreCompetency.getValue() +
+                    "\n";
         }
         return result;
     }

@@ -34,19 +34,22 @@ public class JobTest {
 
     @Test
     public void testSettingJobId() {
-        int test1 = test_job_2.getId() - 1;
-        int test2 = test_job_1.getId();
-        assertFalse(test_job_1.getId() == test_job_2.getId());
-        assertEquals(test1, test2, .001);
+        Job test1 = new Job();
+        Job test2 = new Job();
+        int testId1 = test1.getId();
+        int testId2 = test2.getId() - 1;
+        assertEquals(testId1, testId2, .001);
+        assertFalse(test1.getId() == test2.getId());
     }
 
     @Test
     public void testJobConstructorSetsAllFields() {
-        String testName = test_job_3.getName();
-        Employer testEmployer = test_job_3.getEmployer();
-        Location testLocation = test_job_3.getLocation();
-        PositionType testPositionType = test_job_3.getPositionType();
-        CoreCompetency testCoreCompetency = test_job_3.getCoreCompetency();
+        Job test_job_7 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String testName = test_job_7.getName();
+        Employer testEmployer = test_job_7.getEmployer();
+        Location testLocation = test_job_7.getLocation();
+        PositionType testPositionType = test_job_7.getPositionType();
+        CoreCompetency testCoreCompetency = test_job_7.getCoreCompetency();
 
         assertEquals("Product tester", testName);
         assertEquals("ACME", testEmployer.getValue());
@@ -54,7 +57,7 @@ public class JobTest {
         assertEquals("Quality control", testPositionType.getValue());
         assertEquals("Persistence", testCoreCompetency.getValue());
 
-        assertTrue(test_job_3 instanceof Job);
+        assertTrue(test_job_7 instanceof Job);
         assertTrue(testName instanceof String);
         assertTrue(testEmployer instanceof Employer);
         assertTrue(testLocation instanceof Location);
@@ -77,16 +80,23 @@ public class JobTest {
 
     @Test
     public void testToStringStartsAndEndsWithNewLine() {
-        assertEquals("\nID: " + test_job_3.getId() + "\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n", test_job_3.toString());
+        Job test_job_10 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        char firstChar = test_job_10.toString().charAt(0);
+        char lastChar = test_job_10.toString().charAt(test_job_10.toString().length()-1);
+        assertEquals(firstChar, '\n');
+        assertEquals(lastChar, '\n');
+        //assertEquals("\nID: " + test_job_10.getId() + "\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n", test_job_10.toString());
     }
 
     @Test
     public void testToStringHandlesEmptyField() {
-        assertEquals("\nID: " + test_job_6.getId() + "\nName: Incomplete Job\nEmployer: Data not available\nLocation: New York City\nPosition Type: Data not available\nCore Competency: Java\n", test_job_6.toString());
+        Job test_job_8 = new Job("Incomplete Job", new Employer(""), new Location("New York City"), new PositionType(""), new CoreCompetency("Java"));
+        assertEquals("\nID: " + test_job_8.getId() + "\nName: Incomplete Job\nEmployer: Data not available\nLocation: New York City\nPosition Type: Data not available\nCore Competency: Java\n", test_job_8.toString());
     }
 
     @Test
     public void testToStringContainsCorrectLabelsAndData() {
-        assertEquals("\nID: " + test_job_4.getId() + "\nName: Your Dream Job\nEmployer: Bumble\nLocation: Remote\nPosition Type: Front end developer\nCore Competency: Positive attitude\n", test_job_4.toString());
+        Job test_job_10 =  new Job("Your Dream Job", new Employer("Bumble"), new Location("Remote"), new PositionType("Front end developer"), new CoreCompetency("Positive attitude"));
+        assertEquals("\nID: " + test_job_10.getId() + "\nName: Your Dream Job\nEmployer: Bumble\nLocation: Remote\nPosition Type: Front end developer\nCore Competency: Positive attitude\n", test_job_10.toString());
     }
 }
