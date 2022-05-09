@@ -33,7 +33,7 @@ public class Job {
     public String toString() {
         String emptyMessage = "Data not available";
         String result = "";
-        if (name == null) { result = "OOPS! This job does not seem to exist.";
+        if (name == null) { result = "\nOOPS! This job does not seem to exist.\n";
         } else {
         if (employer.getValue() == null || employer.getValue().equals("")) { employer.setValue(emptyMessage); }
         if (location.getValue() == null || location.getValue().equals("")) { location.setValue(emptyMessage); }

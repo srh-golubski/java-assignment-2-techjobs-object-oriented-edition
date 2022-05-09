@@ -36,6 +36,7 @@ public class JobTest {
     public void testSettingJobId() {
         int test1 = test_job_2.getId() - 1;
         int test2 = test_job_1.getId();
+        assertFalse(test_job_1.getId() == test_job_2.getId());
         assertEquals(test1, test2, .001);
     }
 
@@ -69,7 +70,7 @@ public class JobTest {
     @Test
     public void testJobsPrintCorrectly() {
         assertEquals("\nID: " + test_job_3.getId() + "\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n", test_job_3.toString());
-        assertEquals("OOPS! This job does not seem to exist.", test_job_1.toString());
+        assertEquals("\nOOPS! This job does not seem to exist.\n", test_job_1.toString());
         assertEquals("\nID: " + test_job_6.getId() + "\nName: Incomplete Job\nEmployer: Data not available\nLocation: New York City\nPosition Type: Data not available\nCore Competency: Java\n", test_job_6.toString());
 
     }
